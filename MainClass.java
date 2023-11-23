@@ -89,6 +89,7 @@ public class MainClass
         return true;
     }
 
+
     /**
      * Turns a morse code message into a string based on the morse tree
      * @param mt - Morse Tree
