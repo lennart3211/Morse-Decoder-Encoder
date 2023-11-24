@@ -1,4 +1,3 @@
-import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.io.File;
 
@@ -9,9 +8,6 @@ public class MainClass
 
     // Name of the morse code file
     private static String fileName;
-
-    // Keeps track of if a file has been loaded and the tree is built
-    private static boolean fileIsLoaded = false;
 
     // Name of the file that will be loaded if no file is selected
     private static final String DEFAULT_FILE_NAME = "default.morse";
@@ -85,7 +81,6 @@ public class MainClass
             System.err.println(e);
             return false;
         }
-        fileIsLoaded = true;
         return true;
     }
 
@@ -111,6 +106,7 @@ public class MainClass
                 sb.append(mt.decode(line));
             } catch (InvalidMorseCodeException e) {
                 System.err.println(e);
+                scan.close();
                 return null;
             }
             
