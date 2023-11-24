@@ -3,9 +3,6 @@ import java.io.File;
 
 public class MainClass
 {
-    // Scanner for user input
-    private static final Scanner SCAN = new Scanner(System.in);
-
     // Name of the morse code file
     private static String fileName;
 
@@ -17,6 +14,9 @@ public class MainClass
     {
         // Creates new Morse tree
         MorseTree mt = new MorseTree();
+
+        // Scanner for user input
+        Scanner scan = new Scanner(System.in);
 
         // Checks if a file has been passed
         if (args.length == 0)
@@ -38,6 +38,7 @@ public class MainClass
         else
         {
             System.out.println("Unable to build Tree from file");
+            scan.close();
             return;
         }
 
@@ -46,9 +47,12 @@ public class MainClass
         while (true)
         {
             System.out.print("Enter message to be decoded or stop to exit: ");
-            input = SCAN.nextLine();
+            input = scan.nextLine();
+
+            // Stop the program if the user enters stop
             if (input.equalsIgnoreCase("stop"))
             {
+                scan.close();
                 return;
             }
             output = decode(mt, input);
@@ -64,7 +68,7 @@ public class MainClass
      * @param mt - The MorseTree to be built
      * @return - True if the tree was built succesfully
      */
-    private static boolean buildTree(MorseTree mt, String fileName)
+    public static boolean buildTree(MorseTree mt, String fileName)
     {
         // Clear the tree so add doesn't return false
         mt.clear();
@@ -114,19 +118,5 @@ public class MainClass
         }
         scan.close();
         return sb.toString();
-    }
-
-    /**
-     * Prints out the morse tree
-     * @param mt
-     */
-    private static void showTree(MorseTree mt)
-    {
-        if (mt == null)
-        {
-            System.out.println("");
-            return;
-        }
-        System.out.println(mt);
     }
 }

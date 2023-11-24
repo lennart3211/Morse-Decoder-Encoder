@@ -148,56 +148,6 @@ public class MorseTree
     }
 
     /**
-     * @return - A string representing the tree
-     */
-    public String toString()
-    {
-        if (root == null)
-        {
-            return "";
-        }
-
-        StringBuilder sb = new StringBuilder();
-        sb.append(root.data);
-
-        String pointerRight = "└──";
-        String pointerLeft = (root.right != null) ? "├──" : "└──";
-
-        preOrder(root.left, "", pointerLeft, sb, root.right != null);
-        preOrder(root.right, "", pointerRight, sb, false);
-
-        return sb.toString();
-    }
-
-    private void preOrder(Node start, String padding, String pointer, StringBuilder sb, boolean hasRightSiblng)
-    {
-        if (start != null) {
-            sb.append("\n");
-            sb.append(padding);
-            sb.append(pointer);
-            sb.append(start.data);
-    
-            StringBuilder paddingBuilder = new StringBuilder(padding);
-            if (hasRightSiblng)
-            {
-                paddingBuilder.append("│  ");
-            }
-            else
-            {
-                paddingBuilder.append("   ");
-            }
-    
-            String paddingForBoth = paddingBuilder.toString();
-            String pointerForRight = "└──";
-            String pointerForLeft = (start.right != null) ? "├──" : "└──";
-    
-            preOrder(start.left, paddingForBoth, pointerForLeft, sb, start.right != null);
-            preOrder(start.right, paddingForBoth, pointerForRight, sb, false);
-        }
-        
-    }
-
-    /**
      * Sets the root node equal to a new node
      */
     public void clear()
