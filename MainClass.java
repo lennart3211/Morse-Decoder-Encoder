@@ -26,6 +26,7 @@ public class MainClass
         }
         else
         {
+            // Sets file name equal to passed filename e.g. "other.txt" from "java MainClass other.txt"
             fileName = args[0];
         }
 
@@ -63,7 +64,7 @@ public class MainClass
      * @param mt - The MorseTree to be built
      * @return - True if the tree was built succesfully
      */
-    public static boolean buildTree(MorseTree mt, String fileName)
+    private static boolean buildTree(MorseTree mt, String fileName)
     {
         // Clear the tree so add doesn't return false
         mt.clear();
